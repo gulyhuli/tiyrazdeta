@@ -1,1 +1,1 @@
-web: python test3.py
+web: python test3.py -p $PORT
