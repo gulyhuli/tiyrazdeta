@@ -1,9 +1,11 @@
 import telebot
-
+import os
+from flask import Flask, request
 from telebot import types
 
 TOKEN = "555741179:AAFcnjKeq5n1u7Y2OQxApfypR7353lH-zSE"
 bot = telebot.TeleBot(TOKEN)
+server = Flask(__name__)
 
 
 @bot.message_handler(commands=['start'])
@@ -57,6 +59,19 @@ def category(message):
     elif message.text == "🚕Заказ такси🚕":
             bot.send_message(message.from_user.id, "йцукен")
 
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
 
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://app1301.herokuapp.com/' + TOKEN)
+    return "!", 200
+
+
+if __name__ == "__main__": server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 bot.polling()
 
