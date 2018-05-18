@@ -54,24 +54,48 @@ def hello(message):
 @bot.message_handler(content_types=["text"])
 def category(message):
     if message.text == "🍽Заказ еды🍽":
-            bot.send_message(message.from_user.id,"cам")
+            bot.send_message(message.from_user.id,  "Заказ еды 🍩\n\n"
+'Нажми сюда\n\n'
+'👇\n\n'
+'@pizza_suchi_temp\n\n'
+'Сервис "Еда от Никиты"\n'
+'Предлагаю заказ еды по РФ и всему миру со скидкой.\n\n '
+'🍕Пицца, роллы, шашлыки, деликатесы.\n\n'
+'👨‍🍳А также другие доставки.\n\n'
+"Группа селлера: https://t.me/pizza_suchi_group2\n\n"
+
+"Оплата: Qiwi".format(name=message.text))
+
 
     elif message.text == "🚕Заказ такси🚕":
-            bot.send_message(message.from_user.id, "йцукен")
+            bot.send_message(message.from_user.id, "Заказ такси 🚕\n"
+"*********************\n"
+"Нажми сюда\n"
+"👇\n"
+"@BroService\n\n"
+"👾Актуальный прайс по такси:\n"
+"Длинные поездки на такси от BroService⚫️\n"
+"Тарифы UBER📌\n"
+"◼️ Uber X 1ч-400р/2ч-600р\n"
+"◻️ Uber SELECT 1ч-500р/2ч-700р\n"
+"🔳 Uber BLACK 1ч-700р/2ч-900р\n"
+"Трансфер до/от аэропорта тарифу 2ч✈️\n\n\n"
+"Оплата: Яндекс / Карта".format(name=message.text))
 
-@server.route('/' + TOKEN, methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
+
+    elif message.text == "😂Развлечения😂":
+        bot.send_message(message.from_user.id, "Театры🎭 Концерты🎫 Выставки🎟 Мюзиклы🎤\n"
+"*********************\n"
+"Нажми сюда\n"
+"👇\n"
+"@Kapelldiener\n\n"
+"Специальные предложениями на билеты и различные мероприятия (театры🎭, концерты🎫, выставки🎟, мюзиклы🎤 и т.п.).\n"
+"Цены на 30% - 70% - 80% ниже, чем в кассах и интернете.\n"
+"Совсем недавно были билеты на НАШЕСТВИЕ🎸, по очень выгодной цене.\n\n"
+"Информационный канал о предложениях\n"
+"@yrticket\n"
+"Оплата: Qiwi, Сбербанк, Карта\n".format(name=message.text))
 
 
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://app1301.herokuapp.com/' + TOKEN)
-    return "!", 200
 
-
-if __name__ == "__main__": server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 bot.polling()
-
