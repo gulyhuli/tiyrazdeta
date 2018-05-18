@@ -51,12 +51,12 @@ def hello(message):
 
 @bot.message_handler(content_types=["text"])
 def category(message):
-    if message.text == "Заказ еды":
+    if message.text == "🍽Заказ еды🍽":
             bot.send_message(message.from_user.id,"cам")
 
-    elif message.text == "Заказ такси":
+    elif message.text == "🚕Заказ такси🚕":
             bot.send_message(message.from_user.id, "йцукен")
 
 
-bot.polling(none_stop=True)
+bot.polling()
 
